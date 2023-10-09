@@ -1,0 +1,80 @@
+unit uUniversidade;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, uTelaPadrao01, sSkinManager, UCrpeClasses, UCrpe32, DB, ADODB,
+  sNomeStored, sChamaLocalizar, sEnter, Buttons, sSpeedButton, ExtCtrls, sPanel,
+  sComboBox, sCombo_Box, StdCtrls, Grids, DBGrids, Mask, sMaskEdit, sEdit_Text,
+  sCheckBox, sCheck_Box, sScrollBox, sFrameBar, ComCtrls, sCustomComboEdit,
+  sComboEdit, sEdit_Botao;
+
+type
+  TFUniversidade = class(TFTelaPadrao01)
+    PageControl2: TPageControl;
+    TabSheet1: TTabSheet;
+    sEdit_Text1: TsEdit_Text;
+    Label3: TLabel;
+    Label4: TLabel;
+    sEdit_Text2: TsEdit_Text;
+    Label5: TLabel;
+    sEdit_Text3: TsEdit_Text;
+    Label6: TLabel;
+    sEdit_Text4: TsEdit_Text;
+    sEdit_Text5: TsEdit_Text;
+    Label7: TLabel;
+    Label8: TLabel;
+    sEdit_Text6: TsEdit_Text;
+    Label9: TLabel;
+    sEdit_Text7: TsEdit_Text;
+    Label10: TLabel;
+    TabSheet2: TTabSheet;
+    Label11: TLabel;
+    sEdit_Text8: TsEdit_Text;
+    Label12: TLabel;
+    sEdit_Text9: TsEdit_Text;
+    Label13: TLabel;
+    sEdit_Text10: TsEdit_Text;
+    Label14: TLabel;
+    sEdit_Text11: TsEdit_Text;
+    Label15: TLabel;
+    Label16: TLabel;
+    TabSheet3: TTabSheet;
+    DBGrid1: TDBGrid;
+    Label17: TLabel;
+    Gerar: TBitBtn;
+    sEdit_Text13: TsEdit_Text;
+    Label18: TLabel;
+    BitBtn1: TBitBtn;
+    sEdit_Botao1: TsEdit_Botao;
+    sEdit_Text12: TsEdit_Text;
+    Label19: TLabel;
+    DBGrid2: TDBGrid;
+    DS_Sp_Disciplinas: TDataSource;
+    Sp_Disciplinas: TADOStoredProc;
+    procedure pnEditarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FUniversidade: TFUniversidade;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFUniversidade.pnEditarClick(Sender: TObject);
+begin
+  inherited;
+  Sp_Disciplinas.Close;
+  Sp_Disciplinas.ProcedureName('STB_DISCIPLINAS_POR_ALUNO_CAIO')
+  Sp_Disciplinas.Refresh;
+  Sp_Disciplinas.Parameters.ParamByName('@VLOCAMPO');
+  Sp_Disciplinas.ExecProc;
+end;
+
+end.
